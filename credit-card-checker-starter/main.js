@@ -40,9 +40,49 @@ function validateCred(arr) {
     
     return sum % 10 === 0;
   }
-  
-  
   console.log(batch.map(validateCred));
+  
+  function findInvalidCards(cards) {
+    let invalidCards = [];
+    
+    for(var i = 0; i < cards.length; i++) {
+      if(!validateCred(cards[i])) {
+        invalidCards.push(cards[i]);
+      }
+    }
+  };
+  
+  function idInvalidCardCompanies(invalidCards) {
+    let cardCompanies = [];
+  
+    for(var i = 0; i < invalidCards.length; i++) {
+      let firstDigit = invalidCards[i][0];
+      if(cardCompanies.indexOf(firstDigit) === -1) {
+        cardCompanies.push(firstDigit);
+      }
+    }
+  
+    for(var i = 0; i < cardCompanies.length; i++) {
+      let firstDigit = cardCompanies[i];
+      switch(firstDigit){
+        case 3:
+          cardCompanies[i] = 'Amex (American Express)';
+          break;
+        case 4:
+          cardCompanies[i] = 'Visa';
+          break;
+        case 5:
+          cardCompanies[i] = 'Mastercard';
+          break;
+        case 6:
+          cardCompanies[i] = 'Discover';
+          break;
+        default:
+          cardCompanies[i] = 'Not found';
+          break;
+      }
+    }
+  };
 
 
 
